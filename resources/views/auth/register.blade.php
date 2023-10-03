@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{!! asset('assets/dist/css/bootstrap.min.css') !!} ">
-    <title>Document</title>
+    <title>Register</title>
 </head>
 <style>
 body {
@@ -42,13 +42,20 @@ body {
 </style>
 <body>
     <main class="form-signin w-100 m-auto">
-        <form class="form-margin" action="{{ route('login.post') }}" method="POST">
+        <form class="form-margin" action="{{ route('register.post') }}" method="POST">
             @csrf
           <img class="mb-4" src="{!! asset('assets/logo/logo1.png') !!}" alt="" width="72" height="57">
-          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+          <h1 class="h3 mb-3 fw-normal">Create new account</h1>
             @if (session('message'))
                 <span class="text-danger">{{ session('message') }}</span>
             @endif
+            <div class="form-floating">
+                <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com">
+                @if ($errors->has('username'))
+                    <span class="text-danger">{{ $errors->first('username') }}</span>
+                @endif
+                <label for="floatingInput">Username</label>
+              </div>
           <div class="form-floating">
             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
             @if ($errors->has('email'))
@@ -67,11 +74,8 @@ body {
           </div>
 
 
-          <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+          <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
           <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
-        </form>
-        <form action=" {{ route('registration') }}">
-            <button class="btn btn-success w-100 py-2" type="submit">Create new account</button>
         </form>
       </main>
 
