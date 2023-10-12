@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('show.dashboard');
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('show.profile');
     Route::patch('/profile', [ProfileController::class, 'updateImage'])->name('edit.profile');
+    Route::get('/product', [ProductController::class, 'showProduct'])->name('show.product');
+
 
 });
 

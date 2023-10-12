@@ -20,7 +20,7 @@
     </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"></label>
-        <input type="file" class="form-control" id="exampleFormControlInput1" name="image" placeholder="Upload an image">
+        <input type="file" class="form-control" id="exampleFormControlInput1" name="image"   placeholder="Upload an image">
         @error('image')
             <span class="text-danger">{{ $message }}</span>
         @enderror
