@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,9 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::get('dashboard', [AuthController::class, 'dashboard'])->name('show.dashboard');
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('show.profile');
+    Route::patch('/profile', [ProfileController::class, 'updateImage'])->name('edit.profile');
 
 });
 
