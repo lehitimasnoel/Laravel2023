@@ -36,6 +36,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('show.profile');
     Route::patch('/profile', [ProfileController::class, 'updateImage'])->name('edit.profile');
     Route::get('/product', [ProductController::class, 'showProduct'])->name('show.product');
+    Route::get('/product_form', [ProductController::class, 'productForm'])->name('product.form');
+    Route::post('/add_product', [ProductController::class, 'addProduct'])->name('add.product');
+    Route::get('/show_edit_product/{id}', [ProductController::class, 'showEditProduct'])->name('show_edit.product');
+    Route::put('/update_product/{id}', [ProductController::class, 'updateProduct'])->name('update.product');
+
 
 
 });
