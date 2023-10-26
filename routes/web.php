@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/add_product', [ProductController::class, 'addProduct'])->name('add.product');
     Route::get('/show_edit_product/{id}', [ProductController::class, 'showEditProduct'])->name('show_edit.product');
     Route::put('/update_product/{id}', [ProductController::class, 'updateProduct'])->name('update.product');
+    Route::delete('delete_product/{id}', [ProductController::class, 'deleteProduct'])->name('delete.product');
 
 
 

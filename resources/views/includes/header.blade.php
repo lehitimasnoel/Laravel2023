@@ -4,5 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="{!! asset('assets/dist/css/bootstrap.min.css') !!}">
 <link rel="stylesheet" href="{!! asset('assets/icons/bootstrap-icons') !!}">
+<script src="{!! asset('assets/js/sweetalert.min.js') !!}"></script>
+<script src="{!! asset('assets/js/jquery.min.js') !!}"></script>
 <title>Computer Laboratory Management</title>
 

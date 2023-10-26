@@ -3,16 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Utils\Paginate;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function showProduct(){
 
-        $products = product::latest()->paginate(6);
-        //dd((request()->input('page', 1) - 1) * 5);
+       $productss = product::orderBy('created_at','desc')->get()->toArray();
+        $mapped = Arr::map($productss, function (array $value, string $key) {
+            $value['detail'] = Str::limit($value['detail'], 10);
+            return $value;
+        });
+
+        $products = Paginate::paginate($mapped,3);
+
+        return view('pages.products.product',compact('products'));
+
+        /*$products = product::latest()->paginate(3);
+        dd(request()->input('page'));
         return view('pages.products.product',compact('products'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        ->with('i', (request()->input('page', 1) - 1) * 5);*/
     }
     public function productForm(){
         return view('pages.products.product_form');
@@ -28,10 +41,12 @@ class ProductController extends Controller
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $products['image'] = $profileImage;
+        }else{
+            $products['image'] = "";
         }
 
         product::create($products);
-        return redirect(route('show.product'))->with('message','Successfully created new product!');;
+        return redirect(route('show.product'))->with('message','Successfully created new product!');
 
     }
     public function showEditProduct(string $id){
@@ -55,5 +70,12 @@ class ProductController extends Controller
         product::find($id)->update($data);
 
         return redirect(route('show.product'))->with('message','Successfully Updated');
+    }
+
+    public function deleteProduct(Request $request, string $id){
+
+        product::where('id',$id)->delete();
+        return redirect(route('show.product'))->with('message','Successfully deleted!');
+
     }
 }
