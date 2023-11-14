@@ -78,4 +78,8 @@ class ProductController extends Controller
         return redirect(route('show.product'))->with('message','Successfully deleted!');
 
     }
+
+
+
+
 }

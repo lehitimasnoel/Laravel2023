@@ -6,10 +6,19 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href=" {{ route('show.dashboard') }}" class="{{ request()->is('dashboard') ? 'nav-link px-2 link-primary':'nav-link px-2 link-dark' }}">Dashboard</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-          <li><a href="{{ route('show.product') }}" class="{{ request()->is('product') ? 'nav-link px-2 link-primary':'nav-link px-2 link-dark' }}">Products</a></li>
+
+            @if (auth()->user()->isAdmin)
+                <li><a href=" {{ route('show.dashboard') }}" class="{{ request()->is('dashboard') ? 'nav-link px-2 link-primary':'nav-link px-2 link-dark' }}">Dashboard</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
+                <li><a href="{{ route('show.product') }}" class="{{ request()->is('product') ? 'nav-link px-2 link-primary':'nav-link px-2 link-dark' }}">Products</a></li>
+
+            @else
+               <li><a href="{{ route('show.product') }}" class="{{ request()->is('product') ? 'nav-link px-2 link-primary':'nav-link px-2 link-dark' }}">Products</a></li>
+
+            @endif
+
+
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -20,6 +29,8 @@
             <img src="{!! asset('images/'.auth()->user()->image) !!}" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
             <ul class="dropdown-menu text-small">
+
+
                 <li><a class="dropdown-item" href="#">New project...</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href=" {{ route('show.profile') }}">Profile</a></li>

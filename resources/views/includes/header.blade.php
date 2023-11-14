@@ -6,5 +6,5 @@
 <link rel="stylesheet" href="{!! asset('assets/icons/bootstrap-icons') !!}">
 <script src="{!! asset('assets/js/sweetalert.min.js') !!}"></script>
 <script src="{!! asset('assets/js/jquery.min.js') !!}"></script>
-<title>Computer Laboratory Management</title>
+<title>Laravel</title>
 
